@@ -348,3 +348,6 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+
+# References: avoid uplading binary files to the Git Repo
+References/*.dll
