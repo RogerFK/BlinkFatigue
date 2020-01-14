@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Threading;
-using EXILED;
+﻿using EXILED;
 using Harmony;
 
 namespace BlinkFatigue
@@ -12,39 +6,40 @@ namespace BlinkFatigue
     public class BlinkFatigue : EXILED.Plugin
     {
         public static BlinkFatigue Instance { private set; get; }
-        private BlinkEvents BlinkEvents;
         public override string getName => "BlinkFatigue";
         public bool enabled = false;
 
-        // Bool used to check if there was an error. 
-        // If there was, then act as if this plugin wasn't enabled since, otherwise, you wouldn't be guaranteed it works.
-        internal bool Available { set; get; }
         public static HarmonyInstance HarmonyInstance { set; get; }
+        private static uint bruhCounter = 0;
         public override void OnDisable()
         {
             enabled = false;
-            Events.WaitingForPlayersEvent -= this.BlinkEvents.OnWaitingForPlayers;
+            EventPlugin.Scp173PatchDisable = false;
+            HarmonyInstance.UnpatchAll();
+
+            Plugin.Info("Disabled BlinkFatigue.");
         }
         public override void OnEnable()
         {
             enabled = true;
+            EventPlugin.Scp173PatchDisable = true;
             if (Instance == null)
             {
                 Instance = this;
-                this.BlinkEvents = new BlinkEvents();
-                Available = false;
-
-                HarmonyInstance = HarmonyInstance.Create("rogerfk.exiled.blinkfatigue");
-                HarmonyInstance.PatchAll();
             }
+            BlinkConfigs.ReloadConfigs();
+            bruhCounter++;
+            HarmonyInstance = HarmonyInstance.Create($"rogerfk.exiled.blinkfatigue{bruhCounter}");
+            HarmonyInstance.PatchAll();
 
-            Events.WaitingForPlayersEvent += this.BlinkEvents.OnWaitingForPlayers;
-
+            Plugin.Info("Enabled BlinkFatigue.");
         }
 
         public override void OnReload()
         {
             BlinkConfigs.ReloadConfigs();
+
+            Plugin.Info("Reloaded BlinkFatigue.");
         }
     }
 }
