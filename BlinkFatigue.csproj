@@ -47,9 +47,6 @@
     <Reference Include="EXILED">
       <HintPath>References\EXILED.dll</HintPath>
     </Reference>
-    <Reference Include="EXILED_Events">
-      <HintPath>References\EXILED_Events.dll</HintPath>
-    </Reference>
     <Reference Include="Mirror">
       <HintPath>References\Mirror.dll</HintPath>
     </Reference>
@@ -70,10 +67,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BlinkConfigs.cs" />
-    <Compile Include="BlinkEvents.cs" />
+    <Compile Include="BlinkCustomMethod.cs" />
     <Compile Include="BlinkFatigue.cs" />
-    <Compile Include="BlinkPatches.cs" />
-    <Compile Include="BlinkStuff.cs" />
+    <Compile Include="BlinkPatch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
