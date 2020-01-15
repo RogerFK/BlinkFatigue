@@ -16,7 +16,7 @@
             minBlinkTime = EXILED.Plugin.Config.GetFloat("blink_mintime", 2.5f);
             maxBlinkTime = EXILED.Plugin.Config.GetFloat("blink_maxtime", 3.5f);
             reworkAddMin = EXILED.Plugin.Config.GetFloat("blink_addmin", 0.22f);
-            reworkAddMax = EXILED.Plugin.Config.GetFloat("blink_maxtime", 0.34f);
+            reworkAddMax = EXILED.Plugin.Config.GetFloat("blink_addmax", 0.34f);
         }
     }
 }
