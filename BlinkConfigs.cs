@@ -11,7 +11,7 @@
 
         internal static void ReloadConfigs()
         {
-            decreaseRate = EXILED.Plugin.Config.GetFloat("blink_decreaserate");
+            decreaseRate = EXILED.Plugin.Config.GetFloat("blink_decreaserate", 0.75f);
       minReworkBlinkTime = EXILED.Plugin.Config.GetFloat("blink_minblinktime", 1.5f);
             minBlinkTime = EXILED.Plugin.Config.GetFloat("blink_mintime", 2.5f);
             maxBlinkTime = EXILED.Plugin.Config.GetFloat("blink_maxtime", 3.5f);

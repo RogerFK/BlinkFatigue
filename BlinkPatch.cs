@@ -17,7 +17,14 @@ namespace BlinkFatigue
 			{
 				return false;
 			}
-
+			if (!BlinkCustomMethod.someoneLooking)
+			{
+				BlinkCustomMethod.reworkSubstractTime -= Time.fixedDeltaTime * BlinkConfigs.decreaseRate;
+				if (BlinkCustomMethod.reworkSubstractTime < 0f)
+				{
+					BlinkCustomMethod.reworkSubstractTime = 0f;
+				}
+			}
 			__instance._allowMove = true;
 			BlinkCustomMethod.someoneLooking = false;
 			foreach (GameObject gameObject in PlayerManager.players)
