@@ -5,21 +5,20 @@ namespace BlinkFatigue
 {
     public class BlinkFatigue : EXILED.Plugin
     {
-        public static BlinkFatigue Instance { private set; get; }
+        public static HarmonyInstance HarmonyInstance { set; get; }
+        private static uint harmonyCounter = 0;
+        public const string Version = "1.0.1";
         public override string getName => "BlinkFatigue";
         public bool enabled = false;
-
-        public static HarmonyInstance HarmonyInstance { set; get; }
         public override void OnDisable()
         {
             if (enabled == false)
             {
-                Plugin.Error("BlinkFatigue was already disabled.");
                 return;
             }
 
             enabled = false;
-
+            HarmonyInstance.UnpatchAll();
             Plugin.Info("Disabled BlinkFatigue.");
         }
         public override void OnEnable()
@@ -28,33 +27,22 @@ namespace BlinkFatigue
 
             if (enabled == false)
             {
-                Plugin.Error("BlinkFatigue is disabled via config. Check your configs.");
+                Plugin.Info("BlinkFatigue is disabled via config. Check your configs if you think this is an error.");
                 return;
             }
-            if (Instance == null)
-            {
-                Instance = this;
-                HarmonyInstance = HarmonyInstance.Create($"rogerfk.exiled.blinkfatigue");
 
-                HarmonyInstance.PatchAll();
-            }
+            HarmonyInstance = HarmonyInstance.Create($"rogerfk.exiled.blinkfatigue{harmonyCounter}");
+            HarmonyInstance.PatchAll();
 
             BlinkConfigs.ReloadConfigs();
 
-            Plugin.Info("Enabled BlinkFatigue.");
+            Plugin.Info($"Enabled BlinkFatigue v{Version}.");
         }
 
         public override void OnReload()
         {
-            enabled = Config.GetBool("blink_enable", true);
-            
-            if (Instance == null && enabled)
-            {
-                OnEnable();
-            }
-            else BlinkConfigs.ReloadConfigs();
-
-            Plugin.Info("Reloaded BlinkFatigue.");
+            // Unused, this only has to be used when dealing with variables that you'll need after changing assemblies without restarting the server.
+            Plugin.Info("Reloading BlinkFatigue to its newest version.");
         }
     }
 }

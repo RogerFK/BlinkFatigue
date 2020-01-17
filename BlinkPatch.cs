@@ -9,10 +9,8 @@ namespace BlinkFatigue
 		[HarmonyPriority(420)]
 		public static bool Prefix(Scp173PlayerScript __instance)
 		{
-			if (!BlinkFatigue.Instance.enabled) return true;
-
 			BlinkCustomMethod.CustomBlinkingSequence(__instance);
-
+			
 			if (!__instance.iAm173 || (!__instance.isLocalPlayer && !Mirror.NetworkServer.active))
 			{
 				return false;

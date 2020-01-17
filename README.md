@@ -21,8 +21,8 @@ Requires [EXILED](https://github.com/galaxy119/EXILED/).
 | `blink_minblinktime` :warning: | number | 1.5 | **Making people blink too fast may cause epileptic seizures. Change this config at your own risk.** Minimum time allowed between blinks. |
 | `blink_mintime` | number | 2.5 | The minimum time between blinks. Explained further below. |
 | `blink_maxtime` | number | 3.5 | The maximum time between blinks. Explained further below. |
-| `blink_addmin` | number | 0.22 | The minimum time to add to the rework value. Explained further below. |
-| `blink_addmax` | number | 0.34 | The maximum time to add to the rework value. Explained further below. |
+| `blink_addmin` | number | 0.35 | The minimum time to add to the rework value. Explained further below. |
+| `blink_addmax` | number | 0.45 | The maximum time to add to the rework value. Explained further below. |
 | `blink_decreaserate` | number | 0.75 | The rate at which the cooldown of the blink speed is applied. Explained further below. |
 
 ## Explanations and things to consider
@@ -40,9 +40,9 @@ In a nutshell, if you set it to 1 and the plugin was substracting 3 seconds from
 ### These are pretty confusing, so you should stop reading here unless you're really scientifically curious about it.
 The "addmin" and "addmax" values are, like mintime and maxtime, random values which add to an internal number stored by the plugin that keeps incrementing the more people blink and gets decremented when people stop looking at him. __In a nutshell, this is what makes people blink faster everytime they blink__.
 
-Basically, every time a player blinks, the next blink will take less time, and this time is a random number between addmin and addmax. So, the time between blinks would be a random number between 2.5 and 3.5, let's say 2.6 seconds, and that number gets decremented with a number between 0.22 and 0.34, let's say 0.31, so it'd be 2.6 - 0.31 = 2.29 seconds
+Basically, every time a player blinks, the next blink will take less time, and this time is a random number between addmin and addmax. So, the time between blinks would be a random number between 2.5 and 3.5, let's say 2.6 seconds, and that number gets decremented with a number between 0.35 and 0.45, let's say 0.31, so it'd be 2.6 - 0.31 = 2.29 seconds
 
-Since this is so random, here goes a few examples:
+Since this is so random, here goes a few examples taking addmin and addmax values of 0.20 and 0.40 respectively:
 
 - __Bad luck for SCP-173:__
 
