@@ -17,13 +17,13 @@ Requires [EXILED](https://github.com/galaxy119/EXILED/).
 
 | Config Option | Value Type | Default Value | Description |
 |:------------------------:|:----------:|:-------------:|:------------------------------------------:|
-| `blink_enable` | bool | `true` | Enables/disables the plugin |
-| `blink_minblinktime` :warning: | number | 1.5 | **Making people blink too fast may cause epileptic seizures. Change this config at your own risk.** Minimum time allowed between blinks. |
-| `blink_mintime` | number | 2.5 | The minimum time between blinks. Explained further below. |
-| `blink_maxtime` | number | 3.5 | The maximum time between blinks. Explained further below. |
-| `blink_addmin` | number | 0.35 | The minimum time to add to the rework value. Explained further below. |
-| `blink_addmax` | number | 0.45 | The maximum time to add to the rework value. Explained further below. |
-| `blink_decreaserate` | number | 0.75 | The rate at which the cooldown of the blink speed is applied. Explained further below. |
+| `is_enabled` | bool | `true` | Enables/disables the plugin |
+| `min_blink_time` :warning: | float | 1.5 | **Making people blink too fast may cause epileptic seizures. Change this config at your own risk.** Minimum time allowed between blinks. |
+| `min_time` | float | 2.5 | The minimum time between blinks. Explained further below. |
+| `max_time` | float | 3.5 | The maximum time between blinks. Explained further below. |
+| `add_min` | float | 0.35 | The minimum time to add to the rework value. Explained further below. |
+| `add_max` | float | 0.45 | The maximum time to add to the rework value. Explained further below. |
+| `decrease_rate` | float | 0.75 | The rate at which the cooldown of the blink speed is applied. Explained further below. |
 
 ## Explanations and things to consider
 
