@@ -351,12 +351,3 @@ MigrationBackup/
 
 # References: avoid uplading binary files to the Git Repo
 References/*.dll
-/.idea/.idea.BlinkFatigue/.idea/.idea.BlinkFatigue.iml
-/.idea/.idea.BlinkFatigue/.idea/contentModel.xml
-/.idea/.idea.BlinkFatigue/.idea/indexLayout.xml
-/.idea/.idea.BlinkFatigue/.idea/misc.xml
-/.idea/.idea.BlinkFatigue/.idea/modules.xml
-/.idea/.idea.BlinkFatigue/.idea/projectSettingsUpdater.xml
-/.idea/.idea.BlinkFatigue/riderModule.iml
-/.idea/.idea.BlinkFatigue/.idea/vcs.xml
-/.idea/.idea.BlinkFatigue/.idea/workspace.xml
