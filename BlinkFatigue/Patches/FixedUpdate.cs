@@ -18,7 +18,7 @@ namespace BlinkFatigue.Patches
 
             foreach (Player player in Player.List)
             {
-                Scp173PlayerScript playerScript = player.GameObject.GetComponent<Scp173PlayerScript>();
+                Scp173PlayerScript playerScript = player.ReferenceHub.characterClassManager.Scp173;
 
                 if (!playerScript.SameClass && player.Role != RoleType.Tutorial &&
                     playerScript.LookFor173(__instance.gameObject, true) &&
