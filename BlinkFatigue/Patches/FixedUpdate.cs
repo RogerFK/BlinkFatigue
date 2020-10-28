@@ -1,4 +1,5 @@
 using Exiled.API.Features;
+using Exiled.Events;
 using HarmonyLib;
 
 namespace BlinkFatigue.Patches
@@ -6,6 +7,7 @@ namespace BlinkFatigue.Patches
     [HarmonyPatch(typeof(Scp173PlayerScript), nameof(Scp173PlayerScript.FixedUpdate))]
     public class FixedUpdate
     {
+        [HarmonyPriority(Priority.First)]
         public static bool Prefix(Scp173PlayerScript __instance)
         {
             Plugin.Singleton.Functions.CustomBlinkSequence(__instance);
@@ -20,9 +22,7 @@ namespace BlinkFatigue.Patches
             {
                 Scp173PlayerScript playerScript = player.ReferenceHub.characterClassManager.Scp173;
 
-                if (!playerScript.SameClass && player.Role != RoleType.Tutorial &&
-                    playerScript.LookFor173(__instance.gameObject, true) &&
-                    __instance.LookFor173(player.GameObject, false))
+                if (!playerScript.SameClass && (player.Role != RoleType.Tutorial || Events.Instance.Config.CanTutorialBlockScp173) && playerScript.LookFor173(__instance.gameObject, true) && __instance.LookFor173(player.GameObject, false))
                 {
                     __instance.AllowMove = false;
                     Plugin.Singleton.SomeoneIsLooking = true;

@@ -1,5 +1,7 @@
 using System;
+using System.Reflection;
 using Exiled.API.Features;
+using Exiled.Events;
 using HarmonyLib;
 
 namespace BlinkFatigue
@@ -24,11 +26,37 @@ namespace BlinkFatigue
         {
             Singleton = this;
             Functions = new Methods(this);
-            Harmony = new Harmony($"com.galaxy.blinkfatigue-{DateTime.Now.Ticks}");
-            
-            Harmony.PatchAll();
-            
+
+            Log.Info("Setting up method thing");
+            foreach (MethodBase method in Events.Instance.Harmony.GetPatchedMethods())
+                if (method.DeclaringType == null || method.Name == "FixedUpdate")
+                    Events.DisabledPatchesHashSet.Add(method);
+            Log.Info("Added to disabled patches");
+            try
+            {
+                Exiled.Events.Events.Instance.ReloadDisabledPatches();
+            }
+            catch (Exception e)
+            {
+                Log.Error($"{e}");
+            }
+
+            try
+            {
+                Patch();
+            }
+            catch (Exception e)
+            {
+                Log.Error($"{e}");
+            }
+
             base.OnEnabled();
+        }
+
+        public void Patch()
+        {
+            Harmony = new Harmony($"com.galaxy.blinkfatigue-{DateTime.Now.Ticks}");
+            Harmony.PatchAll();
         }
 
         public override void OnDisabled()
