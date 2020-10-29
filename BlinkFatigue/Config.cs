@@ -7,7 +7,7 @@ namespace BlinkFatigue
     {
         [Description("Whether or not the plugin is enabled.")]
         public bool IsEnabled { get; set; } = true;
-        public bool Debug { get; set; }
+        public bool Debug { get; set; } = false;
 
         public float DecreaseRate { get; set; } = 0.75f;
         public float MinBlinkTime { get; set; } = 1.5f;
