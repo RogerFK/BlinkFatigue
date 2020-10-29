@@ -13,12 +13,14 @@ namespace BlinkFatigue
         {
             float newValue = plugin.SubtractTime -= value;
             plugin.SubtractTime = newValue >= 0f ? newValue : 0f;
+            Log.Debug($"SubtractTime: {plugin.SubtractTime}", plugin.Config.Debug);
         }
 
         public void AddTime(float value)
         {
             float newValue = plugin.SubtractTime += value;
             plugin.SubtractTime = newValue <= plugin.Config.MinTime ? newValue : plugin.Config.MinTime;
+            Log.Debug($"SubtractTime: {plugin.SubtractTime}", plugin.Config.Debug);
         }
 
         public void CustomBlinkSequence(Scp173PlayerScript playerScript)
@@ -38,14 +40,14 @@ namespace BlinkFatigue
             if (plugin.SomeoneIsLooking)
             {
                 float value = Random.Range(plugin.Config.AddMin, plugin.Config.AddMax);
-                Log.Debug($"Adding {value} to {plugin.SubtractTime}");
+                Log.Debug($"Adding {value} to {plugin.SubtractTime}", plugin.Config.Debug);
 
                 AddTime(value);
             }
             else
             {
                 float value = Random.Range(plugin.Config.AddMin, plugin.Config.AddMax) * plugin.Config.DecreaseRate;
-                Log.Debug($"Subtracting {value} from {plugin.SubtractTime}");
+                Log.Debug($"Subtracting {value} from {plugin.SubtractTime}", plugin.Config.Debug);
                 SubtractTime(value);
             }
             
